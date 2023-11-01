@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="true" project-jdk-name="Oracle Java(TM) Platform Micro Edition SDK 8.3" project-jdk-type="MobileSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

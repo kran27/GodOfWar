@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="J2ME_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="midp_2.1" level="project" />
+    <orderEntry type="library" name="nokia-ui" level="project" />
+  </component>
+  <component name="com.intellij.j2meplugin.module.J2MEModuleProperties">
+    <mobileApplicationType name="MIDP" />
+  </component>
+  <component name="com.intellij.j2meplugin.module.settings.midp.MIDPSettings">
+    <setting name="MIDlet-Jar-URL" module.settings.user.defined.value="GodOfWar.jar" />
+    <setting name="MIDlet-Name" module.settings.user.defined.value="GodOfWar" />
+    <setting name="MIDlet-Vendor" module.settings.user.defined.value="My Vendor" />
+    <setting name="MIDlet-Version" module.settings.user.defined.value="1.0" />
+    <jarUrl jarUrlName="$MODULE_DIR$/GodOfWar.jar" />
+    <descriptionPath path="$MODULE_DIR$/GodOfWar.jad" useUserDescriptor="false" />
+    <manifest useUserManifest="false" />
+  </component>
+</module>
