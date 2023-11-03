@@ -4,9 +4,9 @@
 //
 
 import com.nokia.mid.sound.Sound;
-import java.io.ByteArrayInputStream;
 import javax.microedition.media.Manager;
 import javax.microedition.media.Player;
+import java.io.ByteArrayInputStream;
 
 public final class d implements Runnable {
     private a be;
@@ -44,7 +44,7 @@ public final class d implements Runnable {
         return false;
     }
 
-    public final void b(boolean var1) {
+    public final void setMuteState(boolean var1) {
         if (this.n() != var1) {
             if (this.be.N) {
                 this.be.M = var1;
@@ -134,25 +134,26 @@ public final class d implements Runnable {
 
     }
 
-    public final synchronized void b(int var1, int var2, int var3, int var4) {
+    // -1 is infinite loops
+    public final synchronized void registerSound(int index, int resourceIndex, int loopcount, int unk) {
         if (!this.bg) {
-            if (this.bl[var1] != null || this.bn[var1] != null) {
-                this.u(var1);
+            if (this.bl[index] != null || this.bn[index] != null) {
+                this.u(index);
             }
 
-            this.bj[var1] = var3;
-            this.bk[var1] = var4;
+            this.bj[index] = loopcount;
+            this.bk[index] = unk;
 
             try {
-                byte[] var5 = this.be.p(var2);
-                if (this.be.j[var2 & 1023] == 7) {
-                    this.bl[var1] = new Sound(var5, 1);
+                byte[] var5 = this.be.p(resourceIndex);
+                if (this.be.j[resourceIndex & 1023] == 7) {
+                    this.bl[index] = new Sound(var5, 1);
                     return;
                 }
 
-                this.bn[var1] = Manager.createPlayer(new ByteArrayInputStream(var5), a(this.be.j[var2 & 1023]));
-                this.bn[var1].realize();
-                this.bn[var1].prefetch();
+                this.bn[index] = Manager.createPlayer(new ByteArrayInputStream(var5), a(this.be.j[resourceIndex & 1023]));
+                this.bn[index].realize();
+                this.bn[index].prefetch();
                 return;
             } catch (Throwable var7) {
             }
@@ -184,7 +185,7 @@ public final class d implements Runnable {
         }
     }
 
-    public final void v(int var1) {
+    public final void playSound(int var1) {
         if (this.n() && this.be.f && (this.bl[var1] != null || this.bn[var1] != null) && (this.bh < 0 || this.bk[this.bh] <= this.bk[var1])) {
             int var2;
             if ((var2 = this.bi) >= 0) {

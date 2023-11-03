@@ -3,14 +3,14 @@
 // (powered by FernFlower decompiler)
 //
 
-import java.io.DataInputStream;
-import java.util.Random;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
+import java.io.DataInputStream;
+import java.util.Random;
 
 public final class e extends a {
     private static boolean bp = false;
-    private final d bq;
+    private final d soundManager;
     public c[] br;
     public c[] bs;
     public c[] bt;
@@ -636,8 +636,8 @@ public final class e extends a {
         super.R = 100;
         super.Q = 20;
         this.c(352, 416);
-        this.bq = new d(this, 12);
-        this.bq.b(false);
+        this.soundManager = new d(this, 12);
+        this.soundManager.setMuteState(false);
         x = 0;
 
         try {
@@ -691,14 +691,14 @@ public final class e extends a {
             } else if (var1 == 5) {
                 if (this.kn && x == 80) {
                     this.kn = false;
-                    this.J(0);
+                    this.playSound(0);
                 }
             } else if (var1 == 2) {
                 if (x == 80) {
-                    this.J(0);
+                    this.playSound(0);
                 }
             } else if (var1 == 3) {
-                this.bq.o();
+                this.soundManager.o();
             }
         }
 
@@ -812,13 +812,13 @@ public final class e extends a {
                 this.r();
                 if ((this.bv == 27 || this.bv == 29) && this.cd == 0) {
                     if (this.bv == 27) {
-                        this.bq.b(true);
+                        this.soundManager.setMuteState(true);
                     } else {
-                        this.bq.b(false);
+                        this.soundManager.setMuteState(false);
                     }
 
-                    bp = this.bq.n();
-                    this.J(0);
+                    bp = this.soundManager.n();
+                    this.playSound(0);
                     if (this.ck == bL << 8) {
                         this.c(0, 0, 35, 35);
                     } else {
@@ -1040,7 +1040,7 @@ public final class e extends a {
 
         if (this.cd == this.ck && this.ce == this.cl && this.cf > 0) {
             if (this.cf == 375 && x != 101 && x != 105) {
-                this.J(1);
+                this.playSound(1);
             }
 
             this.cf -= bN;
@@ -1112,7 +1112,7 @@ public final class e extends a {
                     } else if (this.cy) {
                         this.cy = false;
                         this.ag();
-                        this.J(0);
+                        this.playSound(0);
                         this.c(true);
                         this.b((DataInputStream)null);
                         kS = 0;
@@ -1184,7 +1184,7 @@ public final class e extends a {
                             this.c(0, 0, 35, 35);
                         } else {
                             x = 80;
-                            this.J(0);
+                            this.playSound(0);
                             this.cy = false;
                             this.K(1);
                             if (this.dU >= 10) {
@@ -1213,7 +1213,7 @@ public final class e extends a {
                     } else if (!this.cz && this.cy) {
                         this.cy = false;
                         this.ag();
-                        this.J(0);
+                        this.playSound(0);
                         this.c(true);
                         this.b((DataInputStream)null);
                         this.kT = 0;
@@ -1269,7 +1269,7 @@ public final class e extends a {
                         x = 109;
                     } else {
                         this.ag();
-                        this.J(0);
+                        this.playSound(0);
                         this.c(true);
                         this.b((DataInputStream)null);
                         this.c(0, 0, 35, 35);
@@ -1346,8 +1346,8 @@ public final class e extends a {
                             }
                         }
                     } else if (cB == 4) {
-                        this.bq.b(!this.bq.n());
-                        bp = this.bq.n();
+                        this.soundManager.setMuteState(!this.soundManager.n());
+                        bp = this.soundManager.n();
                     } else if (cB == 2 && this.cC) {
                         this.c(bL, bL, 35, 35);
                         this.eM = -1;
@@ -1484,9 +1484,17 @@ public final class e extends a {
                 this.am();
                 break;
             case 4:
-                this.bq.b(0, 1063, -1, 0);
-                this.bq.b(1, 1064, 1, 0);
-                this.bq.b(2, 1062, 1, 0);
+                this.soundManager.registerSound(0, 1063, -1, 0);// main theme
+                this.soundManager.registerSound(1, 1064, 1, 0); // menu close
+                this.soundManager.registerSound(2, 1062, 1, 0); // hit ground
+                this.soundManager.registerSound(3, 1061, 1, 0); // blades swoosh (long)
+                this.soundManager.registerSound(4, 1060, 1, 0); // blades swoosh (short)
+                this.soundManager.registerSound(5, 1059, 1, 0); // sword swoosh (low)
+                this.soundManager.registerSound(6, 1058, 1, 0); // sword swoosh (high)
+                this.soundManager.registerSound(7, 1057, 1, 0); // enemy hit 1
+                this.soundManager.registerSound(8, 1056, 1, 0); // enemy hit 2
+                this.soundManager.registerSound(9, 1055, 1, 0); // enemy hit 3
+                this.soundManager.registerSound(10, 1054, 1, 0);// enemy hit 4
                 break;
             case 5:
                 this.j(2048);
@@ -2248,7 +2256,7 @@ public final class e extends a {
                 } else if (x == 102) {
                     this.a(var1, !bR ? this.g(54 + this.dT) : this.g(66), bK, bL - (bD >> 1), 33);
                     if (cB == 4) {
-                        this.a(var1, this.g(47) + " " + (this.bq.n() ? this.g(234) : this.g(235)), bK, bL + bD + bE, 33);
+                        this.a(var1, this.g(47) + " " + (this.soundManager.n() ? this.g(234) : this.g(235)), bK, bL + bD + bE, 33);
                         dz[3].a(var1, this.bI - 7 - 10, bL + (bD >> 1) + 1, 0);
                     } else if (cB == 2 && !this.cC) {
                         this.a(var1, this.g(50), bK, bL + bD + bE, 33);
@@ -4362,7 +4370,7 @@ public final class e extends a {
                                 this.iU = true;
                                 this.cF += 6;
                                 this.ai();
-                                this.J(2);
+                                this.playSound(2);
                             }
                         }
 
@@ -4765,7 +4773,11 @@ public final class e extends a {
 
         if (var2 && !iM && this.jF > 0) {
             int var3 = this.bP & 1;
-            this.J(3 + var3);
+            if(jx && !this.iJ) {
+                this.playSound(5 + var3);
+            } else {
+                this.playSound(3 + var3);
+            }
         }
 
         jX = var1;
@@ -4925,7 +4937,7 @@ public final class e extends a {
             this.kW = true;
         }
 
-        this.J();
+        this.playSound();
         this.F();
         this.S();
         this.T();
@@ -5387,7 +5399,7 @@ public final class e extends a {
         this.jG = this.jF;
     }
 
-    private void J() {
+    private void playSound() {
         if (this.jf != -1 && this.fB[this.jf] - fA[this.jf] <= 3 && this.jg > 0) {
             if (this.fB[this.jf] <= 0) {
                 this.jg -= bN;
@@ -5495,7 +5507,7 @@ public final class e extends a {
             if (!this.z()) {
                 this.D(21);
             } else {
-                this.J(3);
+                this.playSound(3);
             }
         } else if (this.iA >= 0 && gF[this.iA] > 0 && this.gl[this.iA] == 1 && this.jW != 14 && !this.iJ) {
             jQ = false;
@@ -5539,7 +5551,7 @@ public final class e extends a {
             if (!this.z()) {
                 this.D(21);
             } else {
-                this.J(3);
+                this.playSound(3);
             }
         } else if (this.iA >= 0 && gF[this.iA] > 0 && this.gl[this.iA] == 1 && this.jW != 14 && !this.iJ) {
             jQ = true;
@@ -6870,14 +6882,16 @@ public final class e extends a {
                                 var10000[var1] -= var18;
                                 if (!jx) {
                                     if (!var3) {
-                                        this.J(3 + (this.bP & 1));
+                                        this.playSound(7 + (this.bP & 1));
                                     }
 
                                     if (var19 == 1) {
                                         ++jd;
                                     }
                                 } else if (!var3) {
-                                    this.J(3 + (this.bP & 1));
+                                    //TODO: Find when this SFX plays
+                                    //this.J(3 + (this.bP & 1));
+                                    this.playSound(1);
                                 }
 
                                 var3 = true;
@@ -6987,14 +7001,14 @@ public final class e extends a {
                                     var10000[var1] -= var18;
                                     if (!jx) {
                                         if (!var3) {
-                                            this.J(3 + (this.bP & 1));
+                                            this.playSound(3 + (this.bP & 1));
                                         }
 
                                         if (var19 != 1) {
                                             break label1100;
                                         }
                                     } else if (!var3) {
-                                        this.J(3 + (this.bP & 1));
+                                        this.playSound(3 + (this.bP & 1));
                                     }
 
                                     ++jd;
@@ -7829,23 +7843,18 @@ public final class e extends a {
         }
     }
 
-    private void J(int var1) {
-        if (var1 != 3 && var1 != 3 && var1 != 3 && var1 != 3) {
-            if (var1 == 0 || var1 == 2 || var1 == 1) {
-                if (!this.kn) {
-                    this.bq.v(var1);
-                    if (var1 == 0 && bp) {
-                        this.kn = true;
-                    }
-                }
-
+    private void playSound(int var1) {
+        if (!this.kn) {
+            this.soundManager.playSound(var1);
+            if (var1 == 0 && bp) {
+                this.kn = true;
             }
         }
     }
 
     private void ai() {
         this.kn = false;
-        this.bq.o();
+        this.soundManager.o();
     }
 
     private void x(Graphics var1) {
@@ -8481,7 +8490,7 @@ public final class e extends a {
                         this.c(bL, bL, 35, 35);
                         x = 1;
                         this.ag();
-                        this.bq.o();
+                        this.soundManager.o();
                         this.bz = false;
                         this.cg = true;
                     } else {
@@ -8491,13 +8500,13 @@ public final class e extends a {
                 break;
             case 1:
                 if (this.bv == 8 || this.bv == 27) {
-                    this.bq.b(!this.bq.n());
-                    bp = this.bq.n();
-                    if (!this.bq.n()) {
+                    this.soundManager.setMuteState(!this.soundManager.n());
+                    bp = this.soundManager.n();
+                    if (!this.soundManager.n()) {
                         this.kn = false;
                     }
 
-                    this.J(0);
+                    this.playSound(0);
                 }
             case 2:
             case 7:
@@ -8557,7 +8566,7 @@ public final class e extends a {
             case 10:
                 if (this.bv == 8 || this.bv == 27) {
                     this.ag();
-                    this.J(0);
+                    this.playSound(0);
                     this.b((DataInputStream)null);
                     this.K(1);
                     this.kT = kS;
