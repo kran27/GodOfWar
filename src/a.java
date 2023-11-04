@@ -4,16 +4,21 @@
 //
 
 import com.nokia.mid.ui.FullCanvas;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
+
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.rms.RecordStore;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class a extends FullCanvas implements Runnable {
+    public int width = this.getWidth();
+    public int height = this.getHeight();
     public int a;
     public int b;
     private long c;
@@ -432,7 +437,7 @@ public abstract class a extends FullCanvas implements Runnable {
         }
     }
 
-    public final String g(int var1) {
+    public final String getResourceString(int var1) {
         short var2 = this.n[var1];
 
         try {
@@ -568,49 +573,49 @@ public abstract class a extends FullCanvas implements Runnable {
         return this.o != null ? this.o[0].bb : this.q.getHeight();
     }
 
-    public final void a(Graphics var1, String var2, int var3, int var4, int var5) {
-        this.a(var1, (String)var2, 0, var2.length(), var3, var4, var5);
+    public final void drawString(Graphics graphics, String string, int x, int y, int unk) {
+        this.a(graphics, string, 0, string.length(), x, y, unk);
     }
 
-    public final void a(Graphics var1, String var2, int var3, int var4, int var5, int var6, int var7) {
-        this.i(var4);
+    public final void a(Graphics graphics, String string, int offset, int length, int x, int y, int unk) {
+        this.i(length);
 
-        for(int var8 = 0; var8 < var4; ++var8) {
-            this.p[var8] = var2.charAt(var3 + var8);
+        for(int var8 = 0; var8 < length; ++var8) {
+            this.p[var8] = string.charAt(offset + var8);
         }
 
-        this.a(var1, (char[])this.p, 0, var4, var5, var6, var7);
+        this.a(graphics, (char[])this.p, 0, length, x, y, unk);
     }
 
-    public final void a(Graphics var1, char[] var2, int var3, int var4, int var5, int var6, int var7) {
-        if ((var7 & 64) != 0) {
-            var6 -= this.b();
-        } else if ((var7 & 32) != 0) {
-            var6 -= this.c();
+    public final void a(Graphics graphics, char[] string, int offset, int length, int x, int y, int unk) {
+        if ((unk & 64) != 0) {
+            y -= this.b();
+        } else if ((unk & 32) != 0) {
+            y -= this.c();
         }
 
-        if ((var7 & 9) != 0) {
-            var5 -= this.a(var2, var3, var4) >> (var7 & 1);
+        if ((unk & 9) != 0) {
+            x -= this.a(string, offset, length) >> (unk & 1);
         }
 
         if (this.o != null) {
-            for(var4 += var3; var3 < var4; ++var3) {
+            for(length += offset; offset < length; ++offset) {
                 c var8;
-                if ((var8 = this.b(var2[var3])) != null) {
-                    var8.a(var1, var5, var6, 0);
-                    var5 += var8.ba;
+                if ((var8 = this.b(string[offset])) != null) {
+                    var8.a(graphics, x, y, 0);
+                    x += var8.ba;
                 } else {
-                    var5 += this.o[2].bb;
+                    x += this.o[2].bb;
                 }
             }
 
         } else {
-            if (var4 != 0) {
-                if (var1.getFont() != this.q) {
-                    var1.setFont(this.q);
+            if (length != 0) {
+                if (graphics.getFont() != this.q) {
+                    graphics.setFont(this.q);
                 }
 
-                var1.drawChars(var2, var3, var4, var5, var6, 20);
+                graphics.drawChars(string, offset, length, x, y, 20);
             }
 
         }
@@ -1212,24 +1217,24 @@ public abstract class a extends FullCanvas implements Runnable {
 
     public final void paint(Graphics var1) {
         if (this.Z) {
-            if (352 != this.T || 416 != this.U) {
+            if (width != this.T || height != this.U) {
                 if (this.X) {
-                    int var3 = 416 - this.U + 1 >>> 1;
+                    int var3 = height - this.U + 1 >>> 1;
                     var1.setColor(-16777216);
                     if (var3 > 0) {
                         if (this.W > 0) {
-                            var1.fillRect(0, 0, 352, this.W);
+                            var1.fillRect(0, 0, width, this.W);
                         }
 
-                        var1.fillRect(0, 416 - var3, 352, var3);
+                        var1.fillRect(0, height - var3, width, var3);
                     }
 
-                    if ((var3 = 352 - this.T + 1 >>> 1) > 0) {
+                    if ((var3 = width - this.T + 1 >>> 1) > 0) {
                         if (this.V > 0) {
                             var1.fillRect(0, this.W, this.V, this.U);
                         }
 
-                        var1.fillRect(352 - var3, this.W, var3, this.U);
+                        var1.fillRect(width - var3, this.W, var3, this.U);
                     }
                 }
 
@@ -1245,17 +1250,17 @@ public abstract class a extends FullCanvas implements Runnable {
     public final void c(int var1, int var2) {
         this.Y = true;
         if (var1 <= 0) {
-            var1 = 352;
+            var1 = width;
         }
 
         if (var2 <= 0) {
-            var2 = 416;
+            var2 = height;
         }
 
         this.T = var1;
         this.U = var2;
-        this.V = 352 - var1;
-        this.W = 416 - var2;
+        this.V = width - var1;
+        this.W = height - var2;
         if (this.V < 0) {
             ++this.V;
         }
@@ -1526,6 +1531,30 @@ public abstract class a extends FullCanvas implements Runnable {
 
     public a(MIDlet var1) {
         this.midlet = var1;
-        this.c(352, 416);
+        this.c(width, height);
+    }
+
+    // I use this function during testing since not all in-game fonts have numbers.
+    public String numberToTextString(int number){
+        // Define a map to store digit-to-name mappings
+        Map<Character, String> digitNames = new HashMap<>();
+        digitNames.put('0', "Zero");
+        digitNames.put('1', "One");
+        digitNames.put('2', "Two");
+        digitNames.put('3', "Three");
+        digitNames.put('4', "Four");
+        digitNames.put('5', "Five");
+        digitNames.put('6', "Six");
+        digitNames.put('7', "Seven");
+        digitNames.put('8', "Eight");
+        digitNames.put('9', "Nine");
+
+        String numberStr = Integer.toString(number);
+        StringBuilder result = new StringBuilder();
+        for (char digit : numberStr.toCharArray()) {
+            result.append(digitNames.get(digit)).append(" ");
+        }
+
+        return result.toString().trim(); // Remove the trailing space and return the result
     }
 }

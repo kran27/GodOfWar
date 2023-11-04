@@ -1,6 +1,8 @@
 # God of War: Betrayal Decompilation Project
 
-This project aims to decompile the mobile game God of War: Betrayal, which was released in 2007 for Java-enabled mobile phones. The game was developed by Javaground and published by Sony Pictures Mobile.
+## TO AVOID ISSUES, PLAY IN 352x416, DYNAMIC RESOLUTION IS NOT FULLY IMPLEMENTED
+
+This project aims to decompile and update the mobile game God of War: Betrayal, which was released in 2007 for Java-enabled mobile phones. The game was developed by Javaground and published by Sony Pictures Mobile.
 
 ## Project Overview
 
@@ -8,12 +10,11 @@ There's no single "best" version of the game. the older ones support running in 
 
 ## Project Goals
 
-The main goals of the project are:
+The current goals of the project are:
 
-- To create a decompiled version of the game's source code
-- To identify and address any bugs or glitches in the original game
-- To potentially modify or enhance the game's code for modern platforms
-- Backport any fixes identified in later versions (these versions use lower resolution assets so were not ideal for being the base of the project)
+- Fix/Implement SFX (WIP)
+- Implement Dynamic Resolution (WIP)
+- Bring back the parallax effect found in older versions
 
 ## Project Status
 

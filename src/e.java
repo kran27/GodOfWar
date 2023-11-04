@@ -28,9 +28,7 @@ public final class e extends a {
     public boolean bF;
     public boolean bG = false;
     public boolean bH = false;
-    public int bI = 352;
-    public int bJ = 416;
-    public static int bK;
+    public static int halfWidth;
     public static int bL;
     public static int x;
     public int y;
@@ -635,7 +633,7 @@ public final class e extends a {
         super(var1);
         super.R = 100;
         super.Q = 20;
-        this.c(352, 416);
+        this.c(width, height);
         this.soundManager = new d(this, 12);
         this.soundManager.setMuteState(false);
         x = 0;
@@ -724,7 +722,7 @@ public final class e extends a {
                 this.L(1);
                 this.bX = null;
                 ks = new String[3];
-                ks[0] = this.g(36);
+                ks[0] = this.getResourceString(36);
                 ks[1] = "";
                 ks[2] = "";
                 this.a(kA, kC);
@@ -779,7 +777,7 @@ public final class e extends a {
                     this.kX = true;
                     this.j();
                     ks = new String[3];
-                    ks[0] = this.g(36);
+                    ks[0] = this.getResourceString(36);
                     ks[1] = "";
                     ks[2] = "";
                     this.a(kA, kC);
@@ -943,7 +941,7 @@ public final class e extends a {
                         this.kI = 0;
                     }
 
-                    if ((this.kI >> 8 > 70 + this.bJ - bD || this.bw == 29 && this.cd == this.ck) && x == 107 && this.ck < bL << 8) {
+                    if ((this.kI >> 8 > 70 + this.height - bD || this.bw == 29 && this.cd == this.ck) && x == 107 && this.ck < bL << 8) {
                         this.c(bL, bL, 35, 35);
                         if (this.bY > 0) {
                             this.cv = true;
@@ -1001,7 +999,7 @@ public final class e extends a {
         }
 
         if (x == 101) {
-            if (this.cd >= this.ck && this.cd < this.bJ << 8) {
+            if (this.cd >= this.ck && this.cd < this.height << 8) {
                 this.dn += bN >> 4 - (this.bw == 8 ? 3 : 0);
             }
 
@@ -1075,7 +1073,7 @@ public final class e extends a {
                     var2[1] = this.bY;
                     var2[2] = -1;
                     this.eM = -1;
-                    this.a(var2, df, 12, 35, 312, 346, 30);
+                    this.a(var2, df, 12, 35, width - 40, 346, 30);
                     this.dg = true;
                     this.c(35, 35, 35, 35);
                     this.kI = 0;
@@ -1091,7 +1089,7 @@ public final class e extends a {
                 }
             } else if (x == 101) {
                 if (this.cd == this.ck && this.ce == this.cl && this.cg && this.dg) {
-                    this.a(this.da, df, 12, 35, 312, 346, 30);
+                    this.a(this.da, df, 12, 35, width - 40, 346, 30);
                     if (ks != null) {
                         ks[0] = "";
                         ks[2] = "";
@@ -1108,7 +1106,7 @@ public final class e extends a {
                         x = this.y;
                         this.cz = false;
                         this.cg = false;
-                        this.a(this.da, df, 12, 0, 312, bD * 5 + bE, 30);
+                        this.a(this.da, df, 12, 0, width - 40, bD * 5 + bE, 30);
                     } else if (this.cy) {
                         this.cy = false;
                         this.ag();
@@ -1128,7 +1126,7 @@ public final class e extends a {
                         ks[0] = "";
                         ks[2] = "";
                         this.a(this.bt);
-                        ks[1] = this.g(114) + "\n" + this.g(292) + "\n\n\n\n";
+                        ks[1] = this.getResourceString(114) + "\n" + this.getResourceString(292) + "\n\n\n\n";
                         this.a(ky, kB);
                         this.c(35, 35, 35, 35);
                         x = 107;
@@ -1149,7 +1147,7 @@ public final class e extends a {
                     ks[2] = "";
                     this.a(this.bt);
                     if (this.cs) {
-                        ks[1] = this.g(115);
+                        ks[1] = this.getResourceString(115);
                         int var1;
                         if ((var1 = ks[1].indexOf(37)) != -1) {
                             ks[1] = ks[1].substring(0, var1) + "1.4.58" + ks[1].substring(var1 + 1, ks[1].length());
@@ -1157,7 +1155,7 @@ public final class e extends a {
 
                         this.a(kz, kB);
                     } else {
-                        ks[1] = this.g(114) + "\n" + this.g(292) + "\n\n\n\n";
+                        ks[1] = this.getResourceString(114) + "\n" + this.getResourceString(292) + "\n\n\n\n";
                         this.a(ky, kB);
                     }
 
@@ -1308,8 +1306,8 @@ public final class e extends a {
                         this.iw = this.iu;
                         this.ix = this.iv;
                         jQ = this.jR;
-                        bU = this.iw - 176 - ((jQ ? 1 : -1) * 352 >> 2);
-                        bV = this.ix - 350;
+                        bU = this.iw - halfWidth - ((jQ ? 1 : -1) * width >> 2);
+                        bV = this.ix - width + 2;
                         this.cY = bU << 8;
                         this.cZ = bV << 8;
                         this.jS = false;
@@ -1430,10 +1428,10 @@ public final class e extends a {
         switch (this.bM) {
             case 0:
                 this.k(138);
-                this.bI = 352;
-                this.bJ = 416;
-                bK = this.bI >> 1;
-                bL = this.bJ >> 1;
+                this.width = this.getWidth();
+                this.height = this.getHeight();
+                halfWidth = this.width >> 1;
+                bL = this.height >> 1;
                 this.h(10240);
                 byte[] var1;
                 cb = new int[(var1 = this.c(1053)).length / 3];
@@ -1594,15 +1592,15 @@ public final class e extends a {
             var3 = this.ix;
         }
 
-        int var10000 = (jQ && this.cI < 0 ? 1 : -1) * (jX != 109 && jX != 110 ? 352 : -352) >> 2;
+        int var10000 = (jQ && this.cI < 0 ? 1 : -1) * (jX != 109 && jX != 110 ? width : -width ) >> 2;
         boolean var4 = false;
-        int var14 = var10000 - (this.iJ ? (jQ ? this.bI >> 2 : -(this.bI >> 2)) : 0);
+        int var14 = var10000 - (this.iJ ? (jQ ? this.width >> 2 : -(this.width >> 2)) : 0);
         if (jX == 116) {
             var14 = 0;
         }
 
         int var5 = this.iJ ? 104 : 0;
-        int var6 = var2 - 176 + var14;
+        int var6 = var2 - halfWidth + var14;
         int var7 = var3 - 350 + var5;
         int var8 = (var6 - bU + this.cS) * bN;
         int var9 = (var7 - bV + this.cT) * bN;
@@ -1636,7 +1634,7 @@ public final class e extends a {
             int var12;
             int var13;
             for(var12 = this.cN - 1; var12 >= 0; --var12) {
-                if (a(this.cO[var12], this.cP[var12], bU, bV, 352, 416)) {
+                if (a(this.cO[var12], this.cP[var12], bU, bV, width, height)) {
                     if (!this.cR[var12]) {
                         var10 = true;
                         var13 = this.cU * bN >> 8;
@@ -1646,8 +1644,8 @@ public final class e extends a {
                             this.cS += var13;
                         }
 
-                        if (!a(this.cO[var12], this.cP[var12], bU + this.cS, bV + this.cT, 352, 416)) {
-                            this.cS = this.cO[var12] - bU - (this.cQ[var12] ? 352 : 0);
+                        if (!a(this.cO[var12], this.cP[var12], bU + this.cS, bV + this.cT, width, height)) {
+                            this.cS = this.cO[var12] - bU - (this.cQ[var12] ? width : 0);
                         }
                     } else {
                         var11 = true;
@@ -1658,15 +1656,15 @@ public final class e extends a {
                             this.cT += var13;
                         }
 
-                        if (!a(this.cO[var12], this.cP[var12], bU + this.cS, bV + this.cT, 352, 416)) {
-                            this.cT = this.cP[var12] - bV - (this.cQ[var12] ? 416 : 0);
+                        if (!a(this.cO[var12], this.cP[var12], bU + this.cS, bV + this.cT, width, height)) {
+                            this.cT = this.cP[var12] - bV - (this.cQ[var12] ? height : 0);
                         }
                     }
                 }
             }
 
             for(var12 = this.hu; var12 >= 0; --var12) {
-                if (hE[var12] && a(hy[var12] + (hF[var12] ? hA[var12] : 0), this.hz[var12], bU, bV, 352, 416)) {
+                if (hE[var12] && a(hy[var12] + (hF[var12] ? hA[var12] : 0), this.hz[var12], bU, bV, width, height)) {
                     var10 = true;
                     var13 = this.cU * bN >> 8;
                     if (hF[var12]) {
@@ -1675,8 +1673,8 @@ public final class e extends a {
                         this.cS += var13;
                     }
 
-                    if (!a(hy[var12] + (hF[var12] ? hA[var12] : 0), this.hz[var12], bU + this.cS, bV + this.cT, 352, 416)) {
-                        this.cS = hy[var12] + (hF[var12] ? hA[var12] : 0) - bU - (hF[var12] ? 352 : 0);
+                    if (!a(hy[var12] + (hF[var12] ? hA[var12] : 0), this.hz[var12], bU + this.cS, bV + this.cT, width, height)) {
+                        this.cS = hy[var12] + (hF[var12] ? hA[var12] : 0) - bU - (hF[var12] ? width : 0);
                     }
                 }
             }
@@ -1767,7 +1765,7 @@ public final class e extends a {
         this.da[1] = this.eN;
         ks = new String[3];
         ks[0] = "";
-        ks[1] = this.g(this.da[1]);
+        ks[1] = this.getResourceString(this.da[1]);
         this.a(this.bt);
         if (ks[1].charAt(0) == '!') {
             x = 105;
@@ -1805,7 +1803,7 @@ public final class e extends a {
             }
 
             this.dg = false;
-            this.a(this.da, df, 12, 0, 312, bD * 5 + bE, 30);
+            this.a(this.da, df, 12, 0, width - 40, bD * 5 + bE, 30);
         }
 
     }
@@ -2060,15 +2058,15 @@ public final class e extends a {
                 break;
             case 78:
                 this.y(var1);
-                this.bu[0].a(var1, bK, 0, 0);
-                this.bu[1].a(var1, bK, 0, 0);
+                this.bu[0].a(var1, halfWidth, 0, 0);
+                this.bu[1].a(var1, halfWidth, 0, 0);
                 int var2 = this.bu[1].aV + this.bu[1].bb + (bD >> 1);
 
                 for(int var3 = 0; var3 <= 5; ++var3) {
-                    this.a(var1, this.g(bC[var3]), bK, var2, 1);
+                    this.drawString(var1, this.getResourceString(bC[var3]), halfWidth, var2, 1);
                     if (var3 == bA) {
-                        dz[2].a(var1, (bK >> 1) - dz[2].aW, var2 + (bD >> 2), 0);
-                        dz[3].a(var1, this.bI - (bK >> 1), var2 + (bD >> 2), 0);
+                        dz[2].a(var1, (halfWidth >> 1) - dz[2].aW, var2 + (bD >> 2), 0);
+                        dz[3].a(var1, this.width - (halfWidth >> 1), var2 + (bD >> 2), 0);
                     }
 
                     var2 = var2 + bD + (bD >> 2);
@@ -2083,8 +2081,8 @@ public final class e extends a {
                 return;
             case 79:
                 this.y(var1);
-                this.bu[0].a(var1, bK, 0, 0);
-                this.bu[1].a(var1, bK, 0, 0);
+                this.bu[0].a(var1, halfWidth, 0, 0);
+                this.bu[1].a(var1, halfWidth, 0, 0);
                 this.a(var1, false);
                 this.f(var1);
                 if (this.ck != bL << 8) {
@@ -2101,7 +2099,7 @@ public final class e extends a {
             case 105:
             case 108:
                 if (x == 100 && this.cd <= 0 && !this.kW) {
-                    this.a(var1, 0, 0, 352, 402);
+                    this.a(var1, 0, 0, width, (height - 14));
                 } else {
                     this.kW = true;
                     this.b(var1);
@@ -2113,8 +2111,8 @@ public final class e extends a {
                 }
 
                 if (x == 100) {
-                    if (this.db && this.dc == jQ && !in && a(this.iw, this.ix, bU, bV, this.bI, this.bJ)) {
-                        this.a(var1, this.de, 131, 17, this.bJ - 30, 0);
+                    if (this.db && this.dc == jQ && !in && a(this.iw, this.ix, bU, bV, this.width, this.height)) {
+                        this.a(var1, this.de, 131, 17, this.height - 30, 0);
                     }
 
                     if (in && this.io >= 0 && this.io < this.im && this.iA >= 0) {
@@ -2124,29 +2122,29 @@ public final class e extends a {
 
                 if (x == 104) {
                     var1.setColor(855564);
-                    var1.fillRect(bK >> 3, bL - (bL >> 1), this.bI - (bK >> 2), bL + bD);
+                    var1.fillRect(halfWidth >> 3, bL - (bL >> 1), this.width - (halfWidth >> 2), bL + bD);
                     var1.setColor(4269080);
-                    var1.drawRect((bK >> 3) - 1, bL - (bL >> 1) - 1, this.bI - (bK >> 2) + 1, bL + bD + 1);
+                    var1.drawRect((halfWidth >> 3) - 1, bL - (bL >> 1) - 1, this.width - (halfWidth >> 2) + 1, bL + bD + 1);
                     var1.setColor(5911589);
-                    var1.drawRect((bK >> 3) - 2, bL - (bL >> 1) - 2, this.bI - (bK >> 2) + 3, bL + bD + 3);
-                    this.eL[0].a(var1, (bK >> 3) - 3, bL - (bL >> 1) - 2, 0);
-                    this.eL[0].a(var1, this.bI - (bK >> 3) + 3, bL - (bL >> 1) - 2, 2);
-                    this.eL[0].a(var1, (bK >> 3) - 3, bL + (bL >> 1) + 2 + bD, 1);
-                    this.eL[0].a(var1, this.bI - (bK >> 3) + 3, bL + (bL >> 1) + 2 + bD, 3);
-                    this.a(var1, this.hP, 136, bK, bL - (bD << 1), 0);
+                    var1.drawRect((halfWidth >> 3) - 2, bL - (bL >> 1) - 2, this.width - (halfWidth >> 2) + 3, bL + bD + 3);
+                    this.eL[0].a(var1, (halfWidth >> 3) - 3, bL - (bL >> 1) - 2, 0);
+                    this.eL[0].a(var1, this.width - (halfWidth >> 3) + 3, bL - (bL >> 1) - 2, 2);
+                    this.eL[0].a(var1, (halfWidth >> 3) - 3, bL + (bL >> 1) + 2 + bD, 1);
+                    this.eL[0].a(var1, this.width - (halfWidth >> 3) + 3, bL + (bL >> 1) + 2 + bD, 3);
+                    this.a(var1, this.hP, 136, halfWidth, bL - (bD << 1), 0);
                     if (this.hQ == 9) {
-                        this.a(var1, this.g(148), bK, bL + bD, 1);
+                        this.drawString(var1, this.getResourceString(148), halfWidth, bL + bD, 1);
                         if (this.hR < 96) {
-                            this.a(var1, this.g(189), bK, bL + (bD << 1) + bD, 1);
+                            this.drawString(var1, this.getResourceString(189), halfWidth, bL + (bD << 1) + bD, 1);
                         } else {
-                            this.a(var1, this.g(151), bK, bL + (bD << 1) + bD, 1);
+                            this.drawString(var1, this.getResourceString(151), halfWidth, bL + (bD << 1) + bD, 1);
                         }
                     } else {
-                        this.a(var1, this.g(147), bK, bL + bD, 1);
+                        this.drawString(var1, this.getResourceString(147), halfWidth, bL + bD, 1);
                         if (this.hR < 96) {
-                            this.a(var1, this.g(158), bK, bL + (bD << 1) + bD, 1);
+                            this.drawString(var1, this.getResourceString(158), halfWidth, bL + (bD << 1) + bD, 1);
                         } else {
-                            this.a(var1, this.g(151), bK, bL + (bD << 1) + bD, 1);
+                            this.drawString(var1, this.getResourceString(151), halfWidth, bL + (bD << 1) + bD, 1);
                         }
                     }
                 }
@@ -2239,87 +2237,87 @@ public final class e extends a {
         if (var2 > 0) {
             if ((!this.cg || this.ch || this.cy || this.cA || this.cz || this.cx) && (x == 108 || x == 102 || x == 1 || x == 109)) {
                 var1.setColor(0);
-                var1.fillRect(0, var2 + 1, 352, 416 - (var3 << 1) - 1);
+                var1.fillRect(0, var2 + 1, width, height - (var3 << 1) - 1);
                 if (x == 108) {
                     if (!bR) {
-                        this.a(var1, this.g(173), bK, bL + bE + (bD >> 3), 33);
+                        this.drawString(var1, this.getResourceString(173), halfWidth, bL + bE + (bD >> 3), 33);
                     } else {
-                        this.a(var1, this.g(173), bK, bL - (bD << 1) + (bD >> 1), 33);
-                        this.a(var1, this.g(206), bK, bL - (bD >> 2) + (bD >> 1), 33);
-                        this.a(var1, String.valueOf(this.gd), bK, bL + bD + (bD >> 2), 33);
+                        this.drawString(var1, this.getResourceString(173), halfWidth, bL - (bD << 1) + (bD >> 1), 33);
+                        this.drawString(var1, this.getResourceString(206), halfWidth, bL - (bD >> 2) + (bD >> 1), 33);
+                        this.drawString(var1, String.valueOf(this.gd), halfWidth, bL + bD + (bD >> 2), 33);
                         if (this.gd > this.jV) {
-                            this.a(var1, this.g(207), bK, bL + (bD << 1) + (bD >> 1), 33);
+                            this.drawString(var1, this.getResourceString(207), halfWidth, bL + (bD << 1) + (bD >> 1), 33);
                         } else {
-                            this.a(var1, this.g(208) + String.valueOf(this.jV), bK, bL + (bD << 1) + (bD >> 1), 33);
+                            this.drawString(var1, this.getResourceString(208) + String.valueOf(this.jV), halfWidth, bL + (bD << 1) + (bD >> 1), 33);
                         }
                     }
                 } else if (x == 102) {
-                    this.a(var1, !bR ? this.g(54 + this.dT) : this.g(66), bK, bL - (bD >> 1), 33);
+                    this.drawString(var1, !bR ? this.getResourceString(54 + this.dT) : this.getResourceString(66), halfWidth, bL - (bD >> 1), 33);
                     if (cB == 4) {
-                        this.a(var1, this.g(47) + " " + (this.soundManager.n() ? this.g(234) : this.g(235)), bK, bL + bD + bE, 33);
-                        dz[3].a(var1, this.bI - 7 - 10, bL + (bD >> 1) + 1, 0);
+                        this.drawString(var1, this.getResourceString(47) + " " + (this.soundManager.n() ? this.getResourceString(234) : this.getResourceString(235)), halfWidth, bL + bD + bE, 33);
+                        dz[3].a(var1, this.width - 7 - 10, bL + (bD >> 1) + 1, 0);
                     } else if (cB == 2 && !this.cC) {
-                        this.a(var1, this.g(50), bK, bL + bD + bE, 33);
+                        this.drawString(var1, this.getResourceString(50), halfWidth, bL + bD + bE, 33);
                         dz[2].a(var1, 17 - dz[2].aW, bL + (bD >> 1) + 1, 0);
-                        dz[3].a(var1, this.bI - 7 - 10, bL + (bD >> 1) + 1, 0);
+                        dz[3].a(var1, this.width - 7 - 10, bL + (bD >> 1) + 1, 0);
                     } else if (cB == 2 && this.cC) {
-                        this.a(var1, this.g(186), bK, bL + bD + bE, 33);
+                        this.drawString(var1, this.getResourceString(186), halfWidth, bL + bD + bE, 33);
                     } else if (cB == 1 && !this.cC) {
-                        this.a(var1, this.g(1), bK, bL + bD + bE, 33);
+                        this.drawString(var1, this.getResourceString(1), halfWidth, bL + bD + bE, 33);
                         dz[2].a(var1, 17 - dz[2].aW, bL + (bD >> 1) + 1, 0);
                     } else if (cB == 1 && this.cC) {
-                        this.a(var1, this.g(185), bK, bL + bD + bE, 33);
+                        this.drawString(var1, this.getResourceString(185), halfWidth, bL + bD + bE, 33);
                     } else if (cB == 3) {
-                        this.a(var1, this.g(46), bK, bL + bD + bE, 33);
-                        dz[3].a(var1, this.bI - 7 - 10, bL + (bD >> 1) + 1, 0);
+                        this.drawString(var1, this.getResourceString(46), halfWidth, bL + bD + bE, 33);
+                        dz[3].a(var1, this.width - 7 - 10, bL + (bD >> 1) + 1, 0);
                         dz[2].a(var1, 17 - dz[2].aW, bL + (bD >> 1) + 1, 0);
                     }
                 } else if (x == 1) {
                     this.a(this.bt);
                     if (bR) {
-                        this.a(var1, this.g(66), bK, bL - bD - (bD >> 1), 33);
-                        this.a(var1, this.g(190), bK, bL - (bD >> 1), 33);
-                        this.a(var1, this.g(238), bK, bL + (bD >> 1), 33);
-                        this.a(var1, this.g(39), bK, bL + bD + (bD >> 1) + (bD >> 2), 33);
+                        this.drawString(var1, this.getResourceString(66), halfWidth, bL - bD - (bD >> 1), 33);
+                        this.drawString(var1, this.getResourceString(190), halfWidth, bL - (bD >> 1), 33);
+                        this.drawString(var1, this.getResourceString(238), halfWidth, bL + (bD >> 1), 33);
+                        this.drawString(var1, this.getResourceString(39), halfWidth, bL + bD + (bD >> 1) + (bD >> 2), 33);
                         a(var1, this.by, 11, true);
                     } else {
-                        this.a(var1, this.g(54 + this.dT), bK, bL - bE, 33);
-                        this.a(var1, this.g(39), bK, bL + bE, 33);
+                        this.drawString(var1, this.getResourceString(54 + this.dT), halfWidth, bL - bE, 33);
+                        this.drawString(var1, this.getResourceString(39), halfWidth, bL + bE, 33);
                         a(var1, this.by, 11, true);
                     }
                 } else if (x == 109) {
                     if (this.dT >= this.dV && this.dV != 0) {
-                        this.a(var1, this.g(279), bK, bL, 33);
-                        this.a(var1, this.g(280), bK, bL + bD, 33);
+                        this.drawString(var1, this.getResourceString(279), halfWidth, bL, 33);
+                        this.drawString(var1, this.getResourceString(280), halfWidth, bL + bD, 33);
                     } else {
-                        this.a(var1, this.g(54 + this.dT - 1) + this.g(169), bK, bL, 33);
-                        this.a(var1, this.g(168) + this.g(54 + this.dT) + this.g(159), bK, bL + bD, 33);
+                        this.drawString(var1, this.getResourceString(54 + this.dT - 1) + this.getResourceString(169), halfWidth, bL, 33);
+                        this.drawString(var1, this.getResourceString(168) + this.getResourceString(54 + this.dT) + this.getResourceString(159), halfWidth, bL + bD, 33);
                     }
                 }
             }
 
             var1.setColor(855564);
-            var1.fillRect(0, 0, 352, var2);
+            var1.fillRect(0, 0, width, var2);
             var1.setColor(4269080);
-            var1.drawLine(0, var2 - 1, 352, var2 - 1);
+            var1.drawLine(0, var2 - 1, width, var2 - 1);
             var1.setColor(5911589);
-            var1.drawLine(0, var2, 352, var2);
+            var1.drawLine(0, var2, width, var2);
             var1.setColor(4269080);
-            var1.drawLine(0, var2 - 1, 352, var2 - 1);
+            var1.drawLine(0, var2 - 1, width, var2 - 1);
             var1.setColor(855564);
-            var1.fillRect(0, 416 - var3, 352, var3);
+            var1.fillRect(0, height - var3, width, var3);
             var1.setColor(10246204);
-            var1.drawLine(0, 416 - var3, 352, 416 - var3);
+            var1.drawLine(0, height - var3, width, height - var3);
             var1.setColor(4269080);
-            var1.drawLine(0, 416 - var3 + 1, 352, 416 - var3 + 1);
+            var1.drawLine(0, height - var3 + 1, width, height - var3 + 1);
             if (!this.cg && x == 108) {
                 this.a(var1, bR ? -1 : 198, 45);
             }
 
             this.eL[0].a(var1, 0, var2, 1);
-            this.eL[0].a(var1, 352, var2, 3);
-            this.eL[0].a(var1, 0, 416 - (var3 - 1), 0);
-            this.eL[0].a(var1, 352, 416 - (var3 - 1), 2);
+            this.eL[0].a(var1, width, var2, 3);
+            this.eL[0].a(var1, 0, height - (var3 - 1), 0);
+            this.eL[0].a(var1, width, height - (var3 - 1), 2);
         }
 
         if (x == 80 && this.cd == 0) {
@@ -2377,16 +2375,16 @@ public final class e extends a {
     private void h(Graphics var1) {
         this.y(var1);
         this.a(this.bt);
-        this.a(var1, this.g(149), 176, bD, 1);
+        this.drawString(var1, this.getResourceString(149), halfWidth, bD, 1);
         dx = String.valueOf(this.jM) + " ~";
-        this.a(var1, dx, 188, 56, 8);
-        dx = this.g(116 + dt);
-        dz[0].a(var1, 176, 102 - dz[0].aX, 0);
+        this.drawString(var1, dx, 188, 56, 8);
+        dx = this.getResourceString(116 + dt);
+        dz[0].a(var1, halfWidth, 102 - dz[0].aX, 0);
         if (dx.indexOf(10) != -1) {
-            this.a(var1, dx.substring(0, dx.indexOf(10)), 176, 104, 1);
-            this.a(var1, dx.substring(dx.indexOf(10) + 1, dx.length()), 176, 104 + bD, 1);
+            this.drawString(var1, dx.substring(0, dx.indexOf(10)), halfWidth, 104, 1);
+            this.drawString(var1, dx.substring(dx.indexOf(10) + 1, dx.length()), halfWidth, 104 + bD, 1);
         } else {
-            this.a(var1, this.g(116 + dt), 176, 104, 1);
+            this.drawString(var1, this.getResourceString(116 + dt), halfWidth, 104, 1);
         }
 
         int var2 = 0;
@@ -2413,30 +2411,30 @@ public final class e extends a {
         }
 
         if (this.dy <= 3) {
-            this.a(var1, this.g(223) + String.valueOf(this.dy + 1), 176, 104 + (bD << 1), 1);
-            this.a(var1, String.valueOf(var2) + "~", 188, 156 + (bD << 1), 8);
-            this.a(var1, this.g(224), 176, 156 + (bD << 1) + bD, 1);
-            this.a(var1, this.g(225), 176, 156 + (bD << 2), 1);
+            this.drawString(var1, this.getResourceString(223) + String.valueOf(this.dy + 1), halfWidth, 104 + (bD << 1), 1);
+            this.drawString(var1, String.valueOf(var2) + "~", 188, 156 + (bD << 1), 8);
+            this.drawString(var1, this.getResourceString(224), halfWidth, 156 + (bD << 1) + bD, 1);
+            this.drawString(var1, this.getResourceString(225), halfWidth, 156 + (bD << 2), 1);
         } else {
-            this.a(var1, this.g(241), 176, 104 + (bD << 1), 1);
+            this.drawString(var1, this.getResourceString(241), halfWidth, 104 + (bD << 1), 1);
         }
 
-        dz[1].a(var1, 176, 104 + (bD << 1) + bD, 0);
+        dz[1].a(var1, halfWidth, 104 + (bD << 1) + bD, 0);
         if (this.dv > 0) {
             var1.setColor(855564);
-            var1.fillRect(bK - (bK >> 1), bL - (bL >> 2), bK, (bL >> 1) + bD);
+            var1.fillRect(halfWidth - (halfWidth >> 1), bL - (bL >> 2), halfWidth, (bL >> 1) + bD);
             var1.setColor(4269080);
-            var1.drawRect(bK - (bK >> 1) - 1, bL - (bL >> 2) - 1, bK + 1, (bL >> 1) + 1 + bD);
+            var1.drawRect(halfWidth - (halfWidth >> 1) - 1, bL - (bL >> 2) - 1, halfWidth + 1, (bL >> 1) + 1 + bD);
             var1.setColor(5911589);
-            var1.drawRect(bK - (bK >> 1) - 2, bL - (bL >> 2) - 2, bK + 3, (bL >> 1) + 3 + bD);
+            var1.drawRect(halfWidth - (halfWidth >> 1) - 2, bL - (bL >> 2) - 2, halfWidth + 3, (bL >> 1) + 3 + bD);
             if (dx.indexOf(10) != -1) {
-                this.a(var1, dx.substring(0, dx.indexOf(10)), bK, bL - bD - (bD >> 1), 1);
-                this.a(var1, dx.substring(dx.indexOf(10) + 1, dx.length()), bK, bL - (bD >> 1), 1);
+                this.drawString(var1, dx.substring(0, dx.indexOf(10)), halfWidth, bL - bD - (bD >> 1), 1);
+                this.drawString(var1, dx.substring(dx.indexOf(10) + 1, dx.length()), halfWidth, bL - (bD >> 1), 1);
             } else {
-                this.a(var1, this.g(116 + dt), bK, bL - (bL >> 2), 1);
+                this.drawString(var1, this.getResourceString(116 + dt), halfWidth, bL - (bL >> 2), 1);
             }
 
-            this.a(var1, this.g(222), bK, bL + bD, 1);
+            this.drawString(var1, this.getResourceString(222), halfWidth, bL + bD, 1);
         }
 
     }
@@ -2465,7 +2463,7 @@ public final class e extends a {
             var1.fillRect(56, 23, jH * 9 >> 8, 3);
         }
 
-        this.a(var1, String.valueOf(this.jM), 79, 33, 1);
+        this.drawString(var1, String.valueOf(this.jM), 79, 33, 1);
     }
 
     private void j(Graphics var1) {
@@ -2474,7 +2472,7 @@ public final class e extends a {
             int var4 = this.hM[var2];
             int var5 = var3 - bU;
             int var6 = var4 - bV;
-            if (var5 + (this.hI << 1) >= 0 && var6 + this.hJ >= 0 && var5 - this.hI <= 352 && var6 - this.hJ <= 416) {
+            if (var5 + (this.hI << 1) >= 0 && var6 + this.hJ >= 0 && var5 - this.hI <= width && var6 - this.hJ <= height) {
                 this.a(var1, this.hG, var2 + 121, var3, var4, 0);
             }
         }
@@ -2489,7 +2487,7 @@ public final class e extends a {
                 int var6 = hU[var4];
                 int var7 = var5 - bU;
                 int var8 = var6 - bV;
-                if (var7 + this.hS[hZ[var2]].aW >= 0 && var8 + this.hS[hZ[var2]].aX >= 0 && var7 - this.hS[hZ[var2]].aW <= 352 && var8 - this.hS[hZ[var2]].aX <= 416) {
+                if (var7 + this.hS[hZ[var2]].aW >= 0 && var8 + this.hS[hZ[var2]].aX >= 0 && var7 - this.hS[hZ[var2]].aW <= width && var8 - this.hS[hZ[var2]].aX <= height) {
                     this.hS[(hZ[var2] << 2) + var3].a(var1, var5, var6, 0);
                 }
             }
@@ -2504,7 +2502,7 @@ public final class e extends a {
                 int var4 = ev[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.ex[var2] >= 0 && var6 + this.ew[var2] >= 0 && var5 - this.ex[var2] <= 352 && var6 - this.ew[var2] <= 416) {
+                if (var5 + this.ex[var2] >= 0 && var6 + this.ew[var2] >= 0 && var5 - this.ex[var2] <= width && var6 - this.ew[var2] <= height) {
                     this.a(var1, this.es, var2 + 10, var3, var4, 0);
                 }
             }
@@ -2519,7 +2517,7 @@ public final class e extends a {
                 int var4 = this.el[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.ep[var2] >= 0 && var6 + this.eo[var2] >= 0 && var5 - this.ep[var2] <= 352 && var6 - this.eo[var2] <= 416) {
+                if (var5 + this.ep[var2] >= 0 && var6 + this.eo[var2] >= 0 && var5 - this.ep[var2] <= width && var6 - this.eo[var2] <= height) {
                     this.a(var1, this.ei, var2 + 30, var3, var4, 0);
                 }
             }
@@ -2534,7 +2532,7 @@ public final class e extends a {
                 int var4 = eC[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.eE[var2] >= 0 && var6 + this.eD[var2] >= 0 && var5 - this.eE[var2] <= 352 && var6 - this.eD[var2] <= 416) {
+                if (var5 + this.eE[var2] >= 0 && var6 + this.eD[var2] >= 0 && var5 - this.eE[var2] <= width && var6 - this.eD[var2] <= height) {
                     this.a(var1, this.ez, var2 + 40, var3, var4, 0);
                 }
             }
@@ -2549,7 +2547,7 @@ public final class e extends a {
                 int var4 = this.fP[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.fT[var2] >= 0 && var6 + fS[var2] >= 0 && var5 - this.fT[var2] <= 352 && var6 - fS[var2] <= 416) {
+                if (var5 + this.fT[var2] >= 0 && var6 + fS[var2] >= 0 && var5 - this.fT[var2] <= width && var6 - fS[var2] <= height) {
                     this.a(var1, this.fL, var2 + 70, var3, var4, 0);
                 }
             }
@@ -2564,7 +2562,7 @@ public final class e extends a {
                 int var4 = fH[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.fJ[var2] >= 0 && var6 + this.fI[var2] >= 0 && var5 - this.fJ[var2] <= 352 && var6 - this.fI[var2] <= 416) {
+                if (var5 + this.fJ[var2] >= 0 && var6 + this.fI[var2] >= 0 && var5 - this.fJ[var2] <= width && var6 - this.fI[var2] <= height) {
                     this.a(var1, this.fC, var2 + 60, var3, var4, this.fF[var2]);
                 }
             }
@@ -2579,7 +2577,7 @@ public final class e extends a {
                 int var4 = this.hk[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.hn[var2] >= 0 && var6 + this.ho[var2] >= 0 && var5 <= 352 && var6 - this.ho[var2] <= 416) {
+                if (var5 + this.hn[var2] >= 0 && var6 + this.ho[var2] >= 0 && var5 <= width && var6 - this.ho[var2] <= height) {
                     this.a(var1, this.hh, var2 + 111, var3, var4, 0);
                 }
             }
@@ -2594,7 +2592,7 @@ public final class e extends a {
                 int var4 = this.hz[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + (hA[var2] << 1) >= 0 && var6 + this.hB[var2] >= 0 && var5 - hA[var2] <= 352 && var6 - this.hB[var2] <= 416) {
+                if (var5 + (hA[var2] << 1) >= 0 && var6 + this.hB[var2] >= 0 && var5 - hA[var2] <= width && var6 - this.hB[var2] <= height) {
                     this.a(var1, this.ht, var2 + 116, var3, var4, 0);
                 }
             }
@@ -2608,7 +2606,7 @@ public final class e extends a {
             int var4 = eU[var2];
             int var5 = var3 - bU;
             int var6 = var4 - bV;
-            if (var5 + this.eW[var2] >= 0 && var6 + this.eX[var2] >= 0 && var5 - this.eW[var2] <= 352 && var6 - this.eX[var2] <= 416) {
+            if (var5 + this.eW[var2] >= 0 && var6 + this.eX[var2] >= 0 && var5 - this.eW[var2] <= width && var6 - this.eX[var2] <= height) {
                 this.a(var1, eR, var2 + 106, var3, var4, 0);
             }
         }
@@ -2622,7 +2620,7 @@ public final class e extends a {
                 int var4 = this.fi[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + fk[var2] >= 0 && var6 + this.fm[var2] >= 0 && var5 - fk[var2] <= 352 && var6 - this.fm[var2] <= 416) {
+                if (var5 + fk[var2] >= 0 && var6 + this.fm[var2] >= 0 && var5 - fk[var2] <= width && var6 - this.fm[var2] <= height) {
                     this.a(var1, this.fe, var2 + 100, var3, var4, 0);
                 }
             }
@@ -2637,7 +2635,7 @@ public final class e extends a {
                 int var4 = this.gp[var2];
                 int var5 = var3 - bU;
                 int var6 = var4 - bV;
-                if (var5 + this.gz[var2] >= 0 && var6 + this.gA[var2] >= 0 && var5 - this.gz[var2] <= 352 && var6 - this.gA[var2] <= 416) {
+                if (var5 + this.gz[var2] >= 0 && var6 + this.gA[var2] >= 0 && var5 - this.gz[var2] <= width && var6 - this.gA[var2] <= height) {
                     boolean var7 = this.gE[var2];
                     switch (this.gl[var2]) {
                         case 1:
@@ -3402,8 +3400,8 @@ public final class e extends a {
                 if (!var2) {
                     this.dM = 22 * dE;
                     this.dN = 22 * dF;
-                    this.cL = this.dM - 352;
-                    this.cM = this.dN - 416;
+                    this.cL = this.dM - width;
+                    this.cM = this.dN - height;
                 }
 
                 dG = dE * dF;
@@ -3420,7 +3418,7 @@ public final class e extends a {
                 this.x(8);
                 this.d(this.count, var2);
                 //TODO: make sure this actually works lol
-                this.bS = bS.d(352, 416);
+                this.bS = bS.d(width, height);
                 this.bS.a(dE, dF, this.bT, 22, 22);
                 var7 = 0;
 
@@ -3869,7 +3867,7 @@ public final class e extends a {
         iT = this.ix / 22;
         this.jF = this.jI;
         this.jG = this.jF;
-        bU = this.iw - 176 - ((jQ ? 1 : -1) * 352 >> 2);
+        bU = this.iw - halfWidth - ((jQ ? 1 : -1) * width >> 2);
         bV = this.ix - 350;
         this.cY = bU << 8;
         this.cZ = bV << 8;
@@ -5236,7 +5234,7 @@ public final class e extends a {
                 if (this.eG[var3] == var1 && eH[var3] == var2) {
                     this.eN = this.eI[var3];
                     this.eO = this.eI[var3];
-                    String var4 = this.g(this.eN);
+                    String var4 = this.getResourceString(this.eN);
                     if (!this.db && var4.charAt(0) == '@') {
                         this.db = true;
                         this.dc = parseInt(var4.substring(2, 3), 0) == 1;
@@ -5507,7 +5505,7 @@ public final class e extends a {
             if (!this.z()) {
                 this.D(21);
             } else {
-                this.playSound(3);
+                this.playSound(7);
             }
         } else if (this.iA >= 0 && gF[this.iA] > 0 && this.gl[this.iA] == 1 && this.jW != 14 && !this.iJ) {
             jQ = false;
@@ -5551,7 +5549,7 @@ public final class e extends a {
             if (!this.z()) {
                 this.D(21);
             } else {
-                this.playSound(3);
+                this.playSound(7);
             }
         } else if (this.iA >= 0 && gF[this.iA] > 0 && this.gl[this.iA] == 1 && this.jW != 14 && !this.iJ) {
             jQ = true;
@@ -5881,7 +5879,7 @@ public final class e extends a {
             if (this.hO[var1] >= 0) {
                 int var2 = this.hL[var1] - bU;
                 int var3 = this.hM[var1] - bV;
-                if (var2 + this.hI >= 0 && var3 + this.hJ >= 0 && var2 - this.hI <= 352 && var3 - this.hJ <= 416 && !this.E(var1 + 121) && hN[var1] != 0 && this.hO[var1] < 8 && this.hO[var1] >= 4) {
+                if (var2 + this.hI >= 0 && var3 + this.hJ >= 0 && var2 - this.hI <= width && var3 - this.hJ <= height && !this.E(var1 + 121) && hN[var1] != 0 && this.hO[var1] < 8 && this.hO[var1] >= 4) {
                     int[] var10000 = this.hO;
                     var10000[var1] += 4;
                     this.a(121 + var1, 5120, this.hO[var1]);
@@ -6020,7 +6018,7 @@ public final class e extends a {
             if (this.et[var1] >= 0) {
                 int var3 = eu[var1] - bU;
                 int var4 = ev[var1] - bV;
-                if (var3 + this.ex[var1] >= 0 && var4 + this.ew[var1] >= 0 && var3 - this.ex[var1] <= 352 && var4 - this.ew[var1] <= 416) {
+                if (var3 + this.ex[var1] >= 0 && var4 + this.ew[var1] >= 0 && var3 - this.ex[var1] <= width && var4 - this.ew[var1] <= height) {
                     if (!this.E(var2)) {
                         this.et[var1] = -1;
                     }
@@ -6041,7 +6039,7 @@ public final class e extends a {
             if (this.eA[var1] >= 0) {
                 int var3 = this.eB[var1] - bU;
                 int var4 = eC[var1] - bV;
-                if (var3 + this.eE[var1] >= 0 && var4 + this.eD[var1] >= 0 && var3 - this.eE[var1] <= 352 && var4 - this.eD[var1] <= 416) {
+                if (var3 + this.eE[var1] >= 0 && var4 + this.eD[var1] >= 0 && var3 - this.eE[var1] <= width && var4 - this.eD[var1] <= height) {
                     if (!this.E(var2)) {
                         this.eA[var1] = -1;
                     }
@@ -6187,7 +6185,7 @@ public final class e extends a {
             if (this.fD[var1] >= 0) {
                 int var3 = fG[var1] - bU;
                 int var4 = fH[var1] - bV;
-                if (var3 + this.fJ[var1] >= 0 && var4 + this.fI[var1] >= 0 && var3 - this.fJ[var1] <= 352 && var4 - this.fI[var1] <= 416) {
+                if (var3 + this.fJ[var1] >= 0 && var4 + this.fI[var1] >= 0 && var3 - this.fJ[var1] <= width && var4 - this.fI[var1] <= height) {
                     boolean var5 = !this.E(var2);
                     int[] var10000;
                     if (this.fF[var1] == 2) {
@@ -6236,7 +6234,7 @@ public final class e extends a {
         for(int var1 = this.hu; var1 >= 0; --var1) {
             int var2 = hy[var1] - bU;
             int var3 = this.hz[var1] - bV;
-            if (var2 + hA[var1] >= 0 && var3 + this.hB[var1] >= 0 && var2 - hA[var1] <= 352 && var3 - this.hB[var1] <= 416) {
+            if (var2 + hA[var1] >= 0 && var3 + this.hB[var1] >= 0 && var2 - hA[var1] <= width && var3 - this.hB[var1] <= height) {
                 for(int var4 = 0; var4 < this.jP.length; var4 += 5) {
                     if ((this.hv[var1] & 1) == 0) {
                         if (!jy && this.jP[var4 + 3] != 0 && a(this.jP[var4], this.jP[var4 + 1], this.jP[var4 + 2], this.jP[var4 + 3], hy[var1], this.hz[var1] - this.hB[var1], hA[var1], this.hB[var1])) {
@@ -6583,7 +6581,7 @@ public final class e extends a {
                                         if (var12 < 66 && var13 < 22) {
                                             this.k(6, var1);
                                             this.gE[var1] = var10 >= 0;
-                                        } else if (var12 < 44 && var13 > 22 && var13 < 176 && this.iJ && !this.fV || var12 < 88 && var13 > 22 && var13 < 44 && iM && !this.fV || var11 > 0 && var13 < 44 && var12 < 66 && this.jW != 37 && this.jW != 38 && !iM && !iN && this.jW != 38) {
+                                        } else if (var12 < 44 && var13 > 22 && var13 < halfWidth && this.iJ && !this.fV || var12 < 88 && var13 > 22 && var13 < 44 && iM && !this.fV || var11 > 0 && var13 < 44 && var12 < 66 && this.jW != 37 && this.jW != 38 && !iM && !iN && this.jW != 38) {
                                             this.k(3, var1);
                                         }
                                     } else if (this.gD[var1]) {
@@ -6881,17 +6879,12 @@ public final class e extends a {
                                 var10000 = gF;
                                 var10000[var1] -= var18;
                                 if (!jx) {
-                                    if (!var3) {
-                                        this.playSound(7 + (this.bP & 1));
-                                    }
-
                                     if (var19 == 1) {
                                         ++jd;
                                     }
-                                } else if (!var3) {
-                                    //TODO: Find when this SFX plays
-                                    //this.J(3 + (this.bP & 1));
-                                    this.playSound(1);
+                                }
+                                if (!var3) {
+                                    this.playSound(7 + (this.bP & 1));
                                 }
 
                                 var3 = true;
@@ -7000,15 +6993,12 @@ public final class e extends a {
                                     var10000 = gF;
                                     var10000[var1] -= var18;
                                     if (!jx) {
-                                        if (!var3) {
-                                            this.playSound(3 + (this.bP & 1));
-                                        }
-
                                         if (var19 != 1) {
                                             break label1100;
                                         }
-                                    } else if (!var3) {
-                                        this.playSound(3 + (this.bP & 1));
+                                    }
+                                    if (!var3) {
+                                        this.playSound(7 + (this.bP & 1));
                                     }
 
                                     ++jd;
@@ -7811,7 +7801,7 @@ public final class e extends a {
     private void a(int[] var1, byte[] var2) {
         this.km = 220;
         this.a(this.bt);
-        this.a(var1, var2, 17, 42, 312, 346, this.km);
+        this.a(var1, var2, 17, 42, width - 40, 346, this.km);
     }
 
     private void ah() {
@@ -7860,10 +7850,10 @@ public final class e extends a {
     private void x(Graphics var1) {
         this.y(var1);
         if (!bZ) {
-            this.bX[1].a(var1, 176, bL, 0);
-            this.bX[0].a(var1, 176, bL, 0);
+            this.bX[1].a(var1, halfWidth, bL, 0);
+            this.bX[0].a(var1, halfWidth, bL, 0);
         } else {
-            this.a(var1, this.bX, 0, 176, bL, 0);
+            this.a(var1, this.bX, 0, halfWidth, bL, 0);
         }
     }
 
@@ -7872,7 +7862,7 @@ public final class e extends a {
         this.kW = true;
         var1.setColor(0);
         this.kX = false;
-        var1.fillRect(0, 0, 352, 416);
+        var1.fillRect(0, 0, width, height);
     }
 
     private void a(int[] var1, byte[] var2, int var3, int var4, int var5, int var6, int var7) {
@@ -7893,7 +7883,7 @@ public final class e extends a {
             byte var12 = var2[var8];
             int var14;
             if ((var14 = var1[var8]) >= 0) {
-                var11 = this.g(var1[var8]);
+                var11 = this.getResourceString(var1[var8]);
             } else if (var14 == -1) {
                 kr[var10] = "";
                 kt[var10++] = var12;
@@ -7990,7 +7980,7 @@ public final class e extends a {
     }
 
     private void a(Graphics var1, boolean var2) {
-        this.a(var1, 0, kp, 352, id);
+        this.a(var1, 0, kp, width, id);
         byte var4 = 0;
         this.kK = true;
         if (id / bD >= ku) {
@@ -8050,7 +8040,7 @@ public final class e extends a {
             }
 
             this.j();
-            this.a(var1, var3 == kv && kw != -1 ? var13.substring(this.kE, this.kF) : var13, var7, var6, var12);
+            this.drawString(var1, var3 == kv && kw != -1 ? var13.substring(this.kE, this.kF) : var13, var7, var6, var12);
             var6 += bD;
             if (x == 101 && var6 >= id && var11 < ku) {
                 this.kH = var11;
@@ -8108,7 +8098,7 @@ public final class e extends a {
         }
 
         if ((var11 < ku - 1 || this.eN < this.eP - 1) && x == 101) {
-            dz[1].a(var1, bK, 95 - dz[1].aX - 2, 0);
+            dz[1].a(var1, halfWidth, 95 - dz[1].aX - 2, 0);
         }
 
     }
@@ -8228,7 +8218,7 @@ public final class e extends a {
     }
 
     private void al() {
-        int var2 = 352 - (this.kP - (this.kP >> 2));
+        int var2 = width - (this.kP - (this.kP >> 2));
         if (kM == null) {
             kM = new byte[var2 * 182];
             kN = new int[var2 * 182];
@@ -8291,8 +8281,9 @@ public final class e extends a {
     private void b(Graphics var1, boolean var2) {
         this.al();
         int var3 = var2 ? 0 : 151;
-        int var4 = var2 ? 222 : 227;
-        a(var1, kN, 0, 352 - (this.kP - (this.kP >> 2)), var3, var4, 352 - (this.kP - (this.kP >> 2) + 1), 182, false);
+        //TODO: Fix screen updates outside of original bounds
+        int var4 = var2 ? (height - 194) : 227;
+        a(var1, kN, 0, width - (this.kP - (this.kP >> 2)), var3, var4, width - (this.kP - (this.kP >> 2) + 1), 182, false);
     }
 
     private void a(Graphics var1, int var2, int var3) {
@@ -8300,69 +8291,69 @@ public final class e extends a {
         this.kU = var2;
         this.a(this.bt);
         var1.setColor(0);
-        var1.fillRect(0, 402, 352, 14);
+        var1.fillRect(0, (height - 14), width, 14);
         var1.setColor(9787452);
-        var1.drawLine(0, 402, 352, 402);
+        var1.drawLine(0, (height - 14), width, (height - 14));
         var1.setColor(4269078);
-        var1.drawLine(0, 403, 352, 403);
+        var1.drawLine(0, (height - 13), width, (height - 13));
         if ((this.cd == this.ck && this.ce == this.cl || x == 106) && this.cI < 0 && (!in || x == 102)) {
             if (var2 != -1) {
-                this.b(var1, 0, var2, 2);
+                this.drawButtonString(var1, 0, var2, 2);
             }
 
             if (var3 != -1) {
-                this.b(var1, 352, var3, 0);
+                this.drawButtonString(var1, width, var3, 0);
             }
 
             if (x == 100) {
                 if (!bR) {
                     if (this.jf == -1 || this.fB[this.jf] <= 0 && this.jg <= 0) {
                         if (jd > 1 && this.je > 0 && x == 100 && this.ce <= 0 && this.kQ < jd) {
-                            this.a(var1, jd + " " + this.g(171), 176, 402 + bE - 6, 1);
+                            this.drawString(var1, jd + " " + this.getResourceString(171), halfWidth, (height - 14) + bE - 6, 1);
                         }
                     } else {
-                        String var4 = this.fB[this.jf] - fA[this.jf] + " " + this.g(195);
+                        String var4 = this.fB[this.jf] - fA[this.jf] + " " + this.getResourceString(195);
                         int var5 = this.a(var4);
                         if (ji && this.fB[this.jf] > 0) {
-                            this.a(var1, var4, bK, 402 + bE - 6, 1);
+                            this.drawString(var1, var4, halfWidth, (height - 14) + bE - 6, 1);
                         }
 
                         if (this.jf >= 0 && this.fB[this.jf] > 0) {
-                            int var6 = bK - (var5 >> 1) - 7;
-                            int var7 = bK + (var5 >> 1) + 7;
+                            int var6 = halfWidth - (var5 >> 1) - 7;
+                            int var7 = halfWidth + (var5 >> 1) + 7;
                             var1.setColor(13868629);
-                            var1.drawLine(var6 - 8, 403, var6 - 8, 416);
-                            var1.drawLine(var7 + 8, 403, var7 + 8, 416);
+                            var1.drawLine(var6 - 8, (height - 13), var6 - 8, height);
+                            var1.drawLine(var7 + 8, (height - 13), var7 + 8, height);
                             var1.setColor(14116120);
-                            var1.drawLine(var6 - 7, 403, var6 - 7, 416);
-                            var1.drawLine(var7 + 7, 403, var7 + 7, 416);
+                            var1.drawLine(var6 - 7, (height - 13), var6 - 7, height);
+                            var1.drawLine(var7 + 7, (height - 13), var7 + 7, height);
                             var1.setColor(14114838);
-                            var1.drawLine(var6 - 6, 403, var6 - 6, 416);
-                            var1.drawLine(var7 + 6, 403, var7 + 6, 416);
+                            var1.drawLine(var6 - 6, (height - 13), var6 - 6, height);
+                            var1.drawLine(var7 + 6, (height - 13), var7 + 6, height);
                             var1.setColor(14111501);
-                            var1.drawLine(var6 - 5, 403, var6 - 5, 416);
-                            var1.drawLine(var7 + 5, 403, var7 + 5, 416);
+                            var1.drawLine(var6 - 5, (height - 13), var6 - 5, height);
+                            var1.drawLine(var7 + 5, (height - 13), var7 + 5, height);
                             var1.setColor(14172934);
-                            var1.drawLine(var6 - 4, 403, var6 - 4, 416);
-                            var1.drawLine(var7 + 4, 403, var7 + 4, 416);
+                            var1.drawLine(var6 - 4, (height - 13), var6 - 4, height);
+                            var1.drawLine(var7 + 4, (height - 13), var7 + 4, height);
                             var1.setColor(14038016);
-                            var1.drawLine(var6 - 3, 403, var6 - 3, 416);
-                            var1.drawLine(var7 + 3, 403, var7 + 3, 416);
+                            var1.drawLine(var6 - 3, (height - 13), var6 - 3, height);
+                            var1.drawLine(var7 + 3, (height - 13), var7 + 3, height);
                             var1.setColor(13116929);
-                            var1.drawLine(var6 - 2, 403, var6 - 2, 416);
-                            var1.drawLine(var7 + 2, 403, var7 + 2, 416);
+                            var1.drawLine(var6 - 2, (height - 13), var6 - 2, height);
+                            var1.drawLine(var7 + 2, (height - 13), var7 + 2, height);
                             var1.setColor(10885383);
-                            var1.drawLine(var6 - 1, 403, var6 - 1, 416);
-                            var1.drawLine(var7 + 1, 403, var7 + 1, 416);
+                            var1.drawLine(var6 - 1, (height - 13), var6 - 1, height);
+                            var1.drawLine(var7 + 1, (height - 13), var7 + 1, height);
                             var1.setColor(7146758);
-                            var1.drawLine(var6, 403, var6, 416);
-                            var1.drawLine(var7, 403, var7, 416);
+                            var1.drawLine(var6, (height - 13), var6, height);
+                            var1.drawLine(var7, (height - 13), var7, height);
                         }
                     }
                 } else if (this.gd >= 1000) {
-                    this.a(var1, this.g(275), 176, 402 + bE - 6, 1);
+                    this.drawString(var1, this.getResourceString(275), halfWidth, (height - 14) + bE - 6, 1);
                 } else {
-                    this.a(var1, this.g(246) + this.gd, 176, 402 + bE - 6, 1);
+                    this.drawString(var1, this.getResourceString(246) + this.gd, halfWidth, (height - 14) + bE - 6, 1);
                 }
             } else {
                 this.kW = true;
@@ -8372,12 +8363,12 @@ public final class e extends a {
         this.kW = false;
     }
 
-    private void b(Graphics var1, int var2, int var3, int var4) {
-        String var5 = this.g(var3);
-        this.a(var1, var5, var2 - (var4 == 0 ? this.a(var5) + 3 : -3), 402 + bE - 6, 20);
+    private void drawButtonString(Graphics var1, int var2, int resourceIndex, int var4) {
+        String var5 = this.getResourceString(resourceIndex);
+        this.drawString(var1, var5, var2 - (var4 == 0 ? this.a(var5) + 3 : -3), (height - 14) + bE - 6, 20);
     }
 
-    private static void a(Graphics var0, int var1, int var2, boolean var3) {
+    private void a(Graphics var0, int var1, int var2, boolean var3) {
         if (x != 1) {
             var2 -= 2;
             var1 -= 2;
@@ -8392,7 +8383,7 @@ public final class e extends a {
         }
 
         int var5 = var2 * 5 + (var2 + 1) * 2 - 1;
-        int var6 = (352 - var5) / 2;
+        int var6 = (width - var5) / 2;
         var0.setColor(0);
         var0.fillRect(var6 - 1, var4 - 1, var5 + 3, 13);
         var0.setColor(15690496);
@@ -8682,16 +8673,17 @@ public final class e extends a {
     private void z(Graphics var1) {
         int var2 = 0;
         int var3 = 0;
-        if (this.bI > this.bJ) {
-            var2 = -(this.bI >> 3);
-        }
+        //i think this looks stupid
+        //if (this.width > this.height) {
+        //    var2 = -(this.width >> 3);
+        //}
 
         if (this.kX || (this.cd > 0 || this.cu) && this.le && x != 1) {
             this.y(var1);
         }
 
         this.a(this.bs);
-        this.a(var1, this.g(274), bK + var2, this.bu[0].aX + this.bu[1].aX, 1);
+        this.drawString(var1, this.getResourceString(274), halfWidth + var2, this.bu[0].aX + this.bu[1].aX, 1);
         this.a(this.br);
         int var4 = kS;
         int var6 = 0;
@@ -8722,7 +8714,7 @@ public final class e extends a {
         int var10 = var4;
         int var11 = var4;
         if (this.le && this.cd <= 0 && !this.cu) {
-            this.a(var1, 0, 220, 352, 182);
+            this.a(var1, 0, 220, width, 182);
         } else {
             this.b(var1);
         }
@@ -8730,7 +8722,7 @@ public final class e extends a {
         this.b(var1, true);
 
         for(int var13 = this.le && this.cd <= 0 && !this.cu ? 2 : 0; var13 <= 4; ++var13) {
-            this.bu[var13].a(var1, var13 < 2 ? bK + var2 : this.bI + 0, var13 < 2 ? 0 : this.bJ, 0);
+            this.bu[var13].a(var1, var13 < 2 ? halfWidth + var2 : this.width + 0, var13 < 2 ? 0 : this.height, 0);
         }
 
         if (this.cu) {
@@ -8739,8 +8731,8 @@ public final class e extends a {
 
         this.le = true;
         this.lb = this.bu[0].aX + this.bu[1].aX + (bD << 1);
-        if (-this.bu[2].aV + this.lb >= this.bJ && var2 == 0) {
-            var3 = -(this.bI >> 3);
+        if (-this.bu[2].aV + this.lb >= this.height && var2 == 0) {
+            var3 = -(this.width >> 3);
         }
 
         while(true) {
@@ -8753,8 +8745,8 @@ public final class e extends a {
             }
 
             if ((kR[var11] & 4194304) != 0) {
-                this.kZ = this.bI < this.kZ ? this.bI : this.kZ;
-                this.la = 176;
+                this.kZ = this.width < this.kZ ? this.width : this.kZ;
+                this.la = halfWidth;
                 var1.setColor(0, 0, 255);
                 var4 = this.lc;
                 this.a(this.br);
@@ -8770,10 +8762,10 @@ public final class e extends a {
                             var14 = bC[var15];
                         }
 
-                        String var17 = this.g(var14);
+                        String var17 = this.getResourceString(var14);
                         switch (var5) {
                             case 1:
-                                var17 = var17 + " " + (bp ? this.g(234) : this.g(235));
+                                var17 = var17 + " " + (bp ? this.getResourceString(234) : this.getResourceString(235));
                             case 0:
                             case 3:
                             case 4:
@@ -8787,12 +8779,12 @@ public final class e extends a {
                                 if (var4 == kS) {
                                     if (var14 != 28 && var14 != 29) {
                                         if (var4 > this.ld) {
-                                            dz[2].a(var1, bK - this.lf - (dz[2].aW << 1) + var2 + var3, this.lb + (bD >> 3) + 1, 0);
+                                            dz[2].a(var1, halfWidth - this.lf - (dz[2].aW << 1) + var2 + var3, this.lb + (bD >> 3) + 1, 0);
                                         }
 
-                                        this.a(var1, var17, this.la + var2 + var3, this.lb, 1);
+                                        this.drawString(var1, var17, this.la + var2 + var3, this.lb, 1);
                                         if (var4 < var7) {
-                                            dz[3].a(var1, bK + this.lf + dz[3].aW + var2 + var3, this.lb + (bD >> 3) + 1, 0);
+                                            dz[3].a(var1, halfWidth + this.lf + dz[3].aW + var2 + var3, this.lb + (bD >> 3) + 1, 0);
                                         }
                                     }
 
